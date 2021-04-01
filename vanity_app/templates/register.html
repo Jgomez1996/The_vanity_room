@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Vanity Room | Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+      .navbar{
+        border-radius:0;
+      }
+      .navbar-inverse .navbar-brand{
+        color: #d63384;
+      }
+      .navbar-inverse .navbar-nav>li>a {
+        color: #d63384;
+      }
+      label {
+        color: #d63384;
+      }
+      input.btn.btn-default {
+        color: #d63384;
+        border-color: #d63384;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">The Vanity Room</a>
+        </div>
+
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/register_page">Create an Account <span class="sr-only">(current)</span></a></li>
+            <li><a href="/login_page">Login</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/classes">Get Certified</a></li>
+            <li><a href="/account/{{current_user.id}}">My Beauty Account</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Register</h1>
+      <form action="/register" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="first_name">First Name </label>
+          <input type="text" class="form-control" name="first_name" />
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name </label>
+          <input type="text" class="form-control" name="last_name" />
+        </div>
+        <div class="form-group">
+          <label for="phone_number">Phone Number </label>
+          <input type="number" class="form-control" name="phone_number" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email </label>
+          <input type="email" class="form-control" name="email" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password </label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+        <div class="form-group">
+          <label for="password_confirm">Confrim Password </label>
+          <input type="password" class="form-control" name="password_confirm" />
+        </div>
+        <input type="submit" class="btn btn-default" style="margin-bottom: 2rem;" value="Register" />
+      </form>
+      <a href="/login_page" class="small text-muted">Already have an account? Log-in here!</a>
+      {% if messages %}
+        <ul class="messages list-group">
+        {% for message in messages %}         
+          <li {% if message.tags %} class="{{ message.tags }} list-group-item list-group-item-warning" {% endif %}>
+            {{ message }}
+          </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
+</html>

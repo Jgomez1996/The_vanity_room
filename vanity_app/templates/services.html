@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Vanity Room | Services</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+      .navbar{
+        border-radius:0;
+        margin-bottom: 0;
+      }
+      .navbar-inverse .navbar-brand{
+        color: #d63384;
+      }
+      .navbar-inverse .navbar-nav>li>a {
+        color: #d63384;
+      }
+      .btn-primary{
+        background-color: #d63384;
+        border-color: #d63384;
+        
+      }
+      .container .card {
+          display: inline-block;
+          margin-right: 15px;
+          margin-bottom: 15PX;
+          vertical-align: top;
+      }
+      a.service_links {
+          font-weight: bold;
+          color: #d63384;
+          margin-top: 10px;
+      }
+      #accordion {
+          display: inline-block;
+      }
+      h4.card-title {
+        color: #d63384;
+        
+      }
+      .jumbotron {
+        background-image: url(https://images.unsplash.com/photo-1581985430116-d8fba25256b0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80);
+      }
+      span.label.label-info {
+        background-color: #efadce;
+      }
+      span.label.label-success {
+        background-color: #212529;
+      }
+      button.btn.btn-link.collapsed {
+        vertical-align: top;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">The Vanity Room</a>
+        </div>
+
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/services">Services <span class="sr-only">(current)</span></a></li>
+            <li><a href="/login_page">Login</a></li>
+            <li><a href="/register_page">Create an Account</a></li>
+            <li><a href="/classes">Get Certified</a></li>
+            <li><a href="/account/{{current_user.id}}">My Beauty Account</a></li>
+              </ul>
+            </li>
+          </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>What We Offer</h1>
+        <p>Book any of our elite beauty services today and be the envy or your friends</p>
+      </div>
+    </div>
+
+    <div class="container">
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1595871151608-bc7abd1caca3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="flase" aria-controls="collapseOne">
+                            <h4 class="card-title">Consultation & Prep</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for item in all_services %}
+                                {% if item.category == 'Consultation & Prep' %}
+                                    <li class="list-group-item"><span class="label label-success">${{item.price}}</span> <span class="label label-info">{{item.duration}} Minutes</span> <br> <a class="service_links" href="/services/info/{{item.id}}">{{item.name}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li class="list-group-item display-4"><span class="label label-success">$50</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Consultation & Skin Analysis</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1587754256282-a11d04e3472d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4 class="card-title">Makeup</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Makeup without Lashes</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$140</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Makeup with Lashes</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$40</span> <span class="label label-warning">Up-charge</span> <br> <a class="service_links" href="#">Glam-it-Up</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <h4 class="card-title">Tints</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$50</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Eyebrow</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$60</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Eyelash</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Eyebrow & Eyelash</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1591384640699-9a85bd036da2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingSeven">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        <h4 class="card-title">Reduction</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Chin</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Arms</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Thigh</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1604256913815-e144e290cec2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingEight">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        <h4 class="card-title">Enhancement</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Butt - 1 session</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$400</span> <span class="label label-info">45 Minutes (each)</span> <br> <a class="service_links" href="#">Butt - 4 sessions</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Breast - 1 session</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$400</span> <span class="label label-info">45 Minutes (each)</span> <br> <a class="service_links" href="#">Breast - 4 sessions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1592136957897-b2b6ca21e10d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4 class="card-title">Facials</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$70</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Classic</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$70</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Men's</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$70</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Teen's</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Anti-aging Collagen</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Detox</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Rejuvenating</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Sensitive Skin</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Rosacea</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$90</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Hot Stone</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$90</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Cold Stone</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Custom</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Custom Back</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Acne</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Acne Back</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Hydro Jelly</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Back</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513138114450-972e59fd270a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1051&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <h4 class="card-title">Lash Extensions</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">2 Hours</span> <br> <a class="service_links" href="#">Classic</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$110</span> <span class="label label-info">2 Hours</span> <br> <a class="service_links" href="#">Hybrid</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">2 Hours</span> <br> <a class="service_links" href="#">Volume</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">2 Hours</span> <br> <a class="service_links" href="#">Custom Full Set</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$130</span> <span class="label label-info">2 Hours</span> <br> <a class="service_links" href="#">Hybrid Full Set</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$140</span> <span class="label label-info">2 Hours</span> <br> <a class="service_links" href="#">Volume Full Set</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$60</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Classic Fill-in</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$70</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Hybrid Fill-in</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$70</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Volume Fill-in</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$90</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Volume Fill-in/Bottom</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$30</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Bottom Lashes</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$30</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Removal</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$30</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Cleaning</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingEleven">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                        <h4 class="card-title">Teeth</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">40 Minutes</span> <br> <a class="service_links" href="#">Whitening 2-3 shades</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Whitening 3-4 shades</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$140</span> <span class="label label-info">1 Hour 20 Minutes</span> <br> <a class="service_links" href="#">Whitening 4-6 shades</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$60</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">One Tooth Gem</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Two Tooth Gem</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Three Tooth Gem</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Full Tooth Gem</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingSix">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h4 class="card-title">Skin Treatments & Peels</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Microdermabrasasion</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Glycolic Peel</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Lactic Peel</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Salicylic Peel</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">LED Phototherapy Treatment</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$80</span> <span class="label label-info">1 Hour</span> <br> <a class="service_links" href="#">Chemical Peel/Exfoliation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1561382936-53b1c2e537c3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingTen">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        <h4 class="card-title">Non-Invasive Injections</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$280</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Lip Filler - 1 syringe</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$400</span> <span class="label label-info">45 Minutes (each)</span> <br> <a class="service_links" href="#">Lip Filler - 2 syringes</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$150</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Lip Filler - 1/2 syringe</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Fat Dissolving Injection</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1576046126313-e93a138bc984?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=995&q=80" style="width: 18rem; height: 13rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingNine">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        <h4 class="card-title">Laser Lipo</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$120</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">1 session</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$400</span> <span class="label label-info">45 Minutes (each)</span> <br> <a class="service_links" href="#">4 sessions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="width: 18rem;" class="card-img-top" alt="">
+                <div class="card-header" id="headingTwelve">
+                    <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                        <h4 class="card-title">Add-ons</h4>
+                    </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item display-4"><span class="label label-success">$70</span> <span class="label label-info">30 Minutes</span> <br> <a class="service_links" href="#">Wood Therapy</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$100</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Skin Tightening</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$30</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Sauna Blanket</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$30</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">High Frequency</a></li>
+                            <li class="list-group-item display-4"><span class="label label-success">$30</span> <span class="label label-info">45 Minutes</span> <br> <a class="service_links" href="#">Whole Body Vibration</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
+</html>
